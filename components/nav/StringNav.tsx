@@ -44,9 +44,8 @@ export default function StringNav() {
     const handlePointerMove = (e: MouseEvent) => {
       NAV_ITEMS.forEach((item, i) => {
         const nodeY = (item.y_pos * window.innerHeight) / 100;
-        // Responsive String X: Right-side for Desktop (width >= 768), Far-Left for Mobile
-        const isMobile = window.innerWidth < 768;
-        const stringX = isMobile ? 30 : window.innerWidth - 60; // Approximate absolute positions
+        // Always pinned to right-side
+        const stringX = window.innerWidth - 60; // Approximate absolute position
         
         const dx = e.clientX - stringX;
         const dy = e.clientY - nodeY;
@@ -107,8 +106,18 @@ export default function StringNav() {
         }
         
         @media (max-width: 768px) {
-          .nav-container { right: auto !important; left: 10px !important; align-items: flex-start !important; }
-          .nav-label { margin-left: 20px !important; margin-right: 0 !important; text-align: left !important; }
+          .nav-container { 
+            right: 15px !important; 
+            left: auto !important; 
+            transform: scale(0.75); 
+            transform-origin: center right;
+          }
+          /* Ensure hover/magnetic area is functional even when scaled */
+          .nav-label { 
+            margin-right: 10px !important; 
+            margin-left: 0 !important; 
+            text-align: right !important; 
+          }
         }
       `}</style>
       
