@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 
 const STORY_ACTS = [
   { text: 'It started with curiosity.', delay: 0 },
-  { text: 'Now, it\'s about architecture.', delay: 1800 },
-  { text: 'Building the intelligence that powers the next generation of AI/ML.', delay: 3400 },
+  { text: 'Now, it\'s about architecture.', delay: 800 },
+  { text: 'Building the intelligence that powers the next generation of AI/ML.', delay: 1600 },
 ];
 
 export default function HeroTerminal() {
@@ -38,7 +38,7 @@ export default function HeroTerminal() {
           setCurrentTyping('');
           setActIndex((prev) => prev + 1);
         }
-      }, 38);
+      }, 20);
 
       return () => clearInterval(typeInterval);
     }, delay);
@@ -237,7 +237,7 @@ export default function HeroTerminal() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
+          transition={{ delay: 2.5, duration: 0.6 }}
           style={{
             marginTop: '24px',
             display: 'inline-flex',
@@ -264,7 +264,7 @@ export default function HeroTerminal() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 4 }}
+        transition={{ delay: 3 }}
         style={{
           position: 'absolute',
           bottom: '40px',

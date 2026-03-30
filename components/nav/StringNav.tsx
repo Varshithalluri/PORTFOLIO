@@ -42,7 +42,6 @@ export default function StringNav() {
   // Pointer Interaction
   useEffect(() => {
     const handlePointerMove = (e: MouseEvent) => {
-      let isHoveringAny = false;
       NAV_ITEMS.forEach((item, i) => {
         const nodeY = (item.y_pos * window.innerHeight) / 100;
         // Responsive String X: Right-side for Desktop (width >= 768), Far-Left for Mobile
@@ -55,8 +54,6 @@ export default function StringNav() {
 
         // 120px interaction radius
         if (distance < 120) {
-          isHoveringAny = true;
-          setHoveredIndex(i);
           const pullStrength = (120 - distance) / 120; // 0 to 1
           
           // String gets "plucked" (max 30px displacement)
@@ -71,7 +68,6 @@ export default function StringNav() {
           magYSprings[i].set(0);
         }
       });
-      if (!isHoveringAny) setHoveredIndex(null);
     };
 
     window.addEventListener('mousemove', handlePointerMove);
@@ -179,6 +175,8 @@ export default function StringNav() {
                 pointerEvents: 'auto',
                 cursor: 'pointer',
               }}
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
               onClick={() => scrollTo(item.id)}
             >
               {/* Combine Magnetic + Scroll Elasticity + Active Scaling */}

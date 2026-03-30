@@ -29,11 +29,9 @@ export default function CurrentChapter() {
   useEffect(() => {
     const handleUserScroll = () => {
       setUserHasScrolled(true);
-      window.removeEventListener('wheel', handleUserScroll);
-      window.removeEventListener('touchmove', handleUserScroll);
     };
-    window.addEventListener('wheel', handleUserScroll);
-    window.addEventListener('touchmove', handleUserScroll);
+    window.addEventListener('wheel', handleUserScroll, { passive: true });
+    window.addEventListener('touchmove', handleUserScroll, { passive: true });
     
     const handleNavJump = (e: any) => {
       if (e.detail?.id === 'chapter') {
